@@ -19,8 +19,17 @@ Run <br>
  
 Screenshot:
 ====
-The red gird represents the ant.
+The red grid represents the ant.
 ![](screenshots/snapshot21.png)
+
+Config:
+====
+In the file "<code>Ant_Util.java</code>", these followings can be configured:
+- Change the color of the grids
+- Change the width and the length of grids
+- Change the size of the window
+- Change the speed of the ant
+- Change the start point of the ant
 
 
 Todo:
