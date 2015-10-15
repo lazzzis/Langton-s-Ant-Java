@@ -7,11 +7,13 @@ public class Ant implements Runnable {
 
     int x, y, forward;
     private Grids grid = null;
+    private boolean alive;
 
     public Ant(int x, int y, Grids grid) {
         this.grid = grid;
         this.x = x;
         this.y = y;
+        this.alive = true;
         if (grid.getColor(x, y) == Ant_Util.white) {
             this.forward = Ant_Util.RIGHT;
         } else {
@@ -23,7 +25,7 @@ public class Ant implements Runnable {
         // record the original color of grid[x][y]
         Color ori_color = grid.getColor(x, y);
         int old_x, old_y;
-        while (true) {
+        while (this.alive) {
             old_x = x;
             old_y = y;
             // black : turn left
@@ -45,10 +47,14 @@ public class Ant implements Runnable {
     // stay idle for next step; and this function controls the speed
     private void stay_idle() {
         try {
-            Thread.sleep(10);
+            Thread.sleep(Ant_Util.ANT_SPEED);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void terminal() {
+        this.alive = false;
     }
 
     private void turn_left() {
@@ -96,15 +102,15 @@ public class Ant implements Runnable {
     }
 
     private void check() {
-        if (x == Ant_Util.Height) {
+        if (x == Ant_Util.Grid_Height) {
             x = 0;
         } else if (x < 0) {
-            x = Ant_Util.Height - 1;
+            x = Ant_Util.Grid_Height - 1;
         }
-        if (y == Ant_Util.Width) {
+        if (y == Ant_Util.Grid_Width) {
             y = 0;
         } else if (y < 0) {
-            y = Ant_Util.Width - 1;
+            y = Ant_Util.Grid_Width - 1;
         }
     }
 }

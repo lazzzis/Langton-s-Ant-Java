@@ -6,12 +6,12 @@ import java.awt.*;
  */
 public class Grids extends Container {
     // every button is a grid
-    private JButton[][] grid = new JButton[Ant_Util.Height][Ant_Util.Width];
+    private JButton[][] grid = new JButton[Ant_Util.Grid_Height][Ant_Util.Grid_Width];
 
     public Grids() {
-        this.setLayout(new GridLayout(Ant_Util.Height, Ant_Util.Width));
-        for (int i = 0; i < Ant_Util.Height; ++ i) {
-            for (int j  = 0; j < Ant_Util.Width; ++ j) {
+        this.setLayout(new GridLayout(Ant_Util.Grid_Height, Ant_Util.Grid_Width));
+        for (int i = 0; i < Ant_Util.Grid_Height; ++ i) {
+            for (int j  = 0; j < Ant_Util.Grid_Width; ++ j) {
                 grid[i][j] = new JButton();
                 grid[i][j].setBackground(Ant_Util.white);
                 this.add(grid[i][j]);
