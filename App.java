@@ -13,25 +13,22 @@ public class App implements ActionListener {
     Grids grid = null;
     Ant ant = null;
     ArrayList<Ant> ant_ths = null;
+     ControlPanel con_pl = null;
 
     public App() {
-
         grid = new Grids();
+        grid.setActionListener(this);
+
         ant = new Ant(Ant_Util.ANT_START_X, Ant_Util.ANT_START_Y, grid);
         ant_ths = new ArrayList();
         ant_ths.add(ant);
         new Thread(ant).start();
 
-        JPanel bottom_pl = new JPanel(new FlowLayout(FlowLayout.CENTER));
-
-        JButton clear_btn = new JButton("Clear ALL");
-        clear_btn.addActionListener(this);
-        bottom_pl.add(clear_btn);
-
+        con_pl = new ControlPanel(grid);
 
         frame = new JFrame();
         frame.add(grid, BorderLayout.CENTER);
-        frame.add(bottom_pl, BorderLayout.SOUTH);
+        frame.add(con_pl, BorderLayout.SOUTH);
 
         frame.setTitle("Langtan's Ant");
         frame.setSize(Ant_Util.Win_Width, Ant_Util.Win_Height);
@@ -40,11 +37,16 @@ public class App implements ActionListener {
         frame.setVisible(true);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
-        for (int i = 0; i < Ant_Util.Grid_Height; ++ i) {
-            for (int j = 0; j < Ant_Util.Grid_Width; ++ j) {
-                grid.setColor(i, j, Ant_Util.white);
-            }
+        if (this.con_pl.isPuttingAnt()) {
+            String str[] = e.getActionCommand().split(" ");
+            int x = Integer.valueOf(str[0]);
+            int y = Integer.valueOf(str[1]);
+            ant = new Ant(x, y, grid);
+            ant_ths = new ArrayList();
+            ant_ths.add(ant);
+            new Thread(ant).start();
         }
     }
 }
