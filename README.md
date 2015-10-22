@@ -35,4 +35,3 @@ In the file "<code>Ant_Util.java</code>", these followings can be configured:
 Todo:
 ====
 - Control the ant to stop and to continue
-- press a grid to add an ant
