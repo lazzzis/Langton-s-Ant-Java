@@ -16,7 +16,7 @@ public class App implements ActionListener {
      ControlPanel con_pl = null;
 
     public App() {
-        grid = new Grids();
+        grid = Grids.getInstance();
         grid.setActionListener(this);
 
         ant = new Ant(Ant_Util.ANT_START_X, Ant_Util.ANT_START_Y, grid);

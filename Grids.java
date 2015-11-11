@@ -5,11 +5,21 @@ import java.awt.event.ActionListener;
 /**
  * Created by lazzzis on 10/14/15.
  */
+
+/**
+ * Refactor this class with Singleton Pattern on 11/11/2015
+ */
 public class Grids extends Container {
     // every button is a grid
     private JButton[][] grid = new JButton[Ant_Util.Grid_Height][Ant_Util.Grid_Width];
 
-    public Grids() {
+    private static Grids Instance = new Grids();
+
+    public static Grids getInstance() {
+        return Instance;
+    }
+
+    private Grids() {
 //        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.setLayout(new GridLayout(Ant_Util.Grid_Height, Ant_Util.Grid_Width));
         for (int i = 0; i < Ant_Util.Grid_Height; ++ i) {
